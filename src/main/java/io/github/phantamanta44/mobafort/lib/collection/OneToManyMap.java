@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
-public class OneToManyMap<K, V, C extends Collection<V>> {
+public class OneToManyMap<K, V, C extends Collection<V>> implements ISimpleCollection<K> {
 
 	private final Map<K, C> backing;
 	private final Supplier<C> factory;
@@ -45,6 +45,16 @@ public class OneToManyMap<K, V, C extends Collection<V>> {
 
 	public void clear() {
 		backing.clear();
+	}
+
+	@Override
+	public int size() {
+		return backing.size();
+	}
+
+	@Override
+	public boolean isEmpty() {
+		return backing.isEmpty();
 	}
 
 	public boolean contains(K key) {
