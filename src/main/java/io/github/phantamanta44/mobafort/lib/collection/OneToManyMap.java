@@ -3,6 +3,7 @@ package io.github.phantamanta44.mobafort.lib.collection;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.BiConsumer;
 import java.util.function.Supplier;
 
 public class OneToManyMap<K, V, C extends Collection<V>> implements ISimpleCollection<K> {
@@ -64,6 +65,10 @@ public class OneToManyMap<K, V, C extends Collection<V>> implements ISimpleColle
 	public boolean contains(K key, V val) {
 		C vals = backing.get(key);
 		return vals != null && vals.contains(val);
+	}
+
+	public void forEach(BiConsumer<K, C> action) {
+		backing.forEach(action);
 	}
 
 }
