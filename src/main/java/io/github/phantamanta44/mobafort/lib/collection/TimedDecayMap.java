@@ -149,12 +149,26 @@ public class TimedDecayMap<K> implements ISelfMutatingCollection<K>, ISimpleMap<
 		this.selfMutationListeners.add(cb);
 	}
 
+	public void resetDecayTimer(K key) {
+		StackDecayTask task = decayTasks.get(key);
+		if (task != null) {
+			task.cancel();
+			decayTasks.put(key, new StackDecayTask(key, task.decayTime));
+		}
+	}
+
 	private class StackDecayTask extends BukkitRunnable {
 
 		private K key;
+		private long decayTime;
 
 		private StackDecayTask(K key, long decayTime) {
 			this.key = key;
+			this.startTimer();
+			this.decayTime = decayTime;
+		}
+
+		private void startTimer() {
 			this.runTaskTimer(plugin, decayTime, decayTime);
 		}
 
