@@ -1,5 +1,7 @@
 package io.github.phantamanta44.mobafort.lib.math;
 
+import org.bukkit.util.Vector;
+
 @SuppressWarnings("unchecked")
 public class MathUtils {
 	
@@ -43,6 +45,19 @@ public class MathUtils {
 		else if (Float.class.isAssignableFrom(wrapping))
 			return (T)Float.valueOf((float)val);
 		return null;
+	}
+
+	public static double horDist(Vector a, Vector b) {
+		return Math.hypot(a.getX() - b.getX(), a.getZ() - b.getZ());
+	}
+
+	public static boolean withinBounds(double lowA, double highA, double lowB, double highB) {
+		return withinBounds(lowB, lowA, highA) || withinBounds(highB, lowA, highA)
+				|| withinBounds(lowA, lowB, highB) || withinBounds(highA, lowB, highB);
+	}
+
+	public static boolean withinBounds(double n, double lower, double upper) {
+		return n >= lower && n <= upper;
 	}
 
 }

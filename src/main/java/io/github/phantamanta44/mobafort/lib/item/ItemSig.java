@@ -1,5 +1,6 @@
 package io.github.phantamanta44.mobafort.lib.item;
 
+import com.google.gson.JsonObject;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -34,6 +35,17 @@ public class ItemSig {
 
 	public boolean equals(ItemSig o) {
 		return this.material == o.material && this.meta == o.meta;
+	}
+
+	public JsonObject serialize() {
+		JsonObject ser = new JsonObject();
+		ser.addProperty("material", material.toString());
+		ser.addProperty("meta", meta);
+		return ser;
+	}
+
+	public static ItemSig deserialize(JsonObject ser) {
+		return new ItemSig(Material.valueOf(ser.get("material").getAsString()), ser.get("meta").getAsInt());
 	}
 
 }
