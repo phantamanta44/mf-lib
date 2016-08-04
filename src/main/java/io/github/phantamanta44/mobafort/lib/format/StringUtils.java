@@ -4,6 +4,29 @@ import org.bukkit.ChatColor;
 
 public class StringUtils {
 
+	public static String concat(String[] parts) {
+		return concat(parts, " ");
+	}
+
+	public static String concat(String[] parts, String sep) {
+		return concat(parts, sep, 0);
+	}
+
+	public static String concat(String[] parts, String sep, int offset) {
+		StringBuilder sb = new StringBuilder();
+		for (int i = offset; i < parts.length - 1; i++)
+			sb.append(parts[i]).append(sep);
+		return sb.append(parts[parts.length - 1]).toString();
+	}
+
+	public static String displayFmt(String str) {
+		return capitalize(str.toLowerCase());
+	}
+
+	public static String capitalize(String str) {
+		return str.substring(0, 1).toUpperCase().concat(str.substring(1, str.length()));
+	}
+
 	public static String genResourceBar(int amt, int max, int length) {
 		String bar = "|";
 		for (int i = 0; i < length; i++)
