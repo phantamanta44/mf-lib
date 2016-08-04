@@ -60,4 +60,12 @@ public class MathUtils {
 		return n >= lower && n <= upper;
 	}
 
+	public static boolean withinBounds(float n, float lower, float upper) {
+		return n >= lower && n <= upper;
+	}
+
+	public static boolean withinBounds(int n, int lower, int upper) {
+		return n >= lower && n <= upper;
+	}
+
 }

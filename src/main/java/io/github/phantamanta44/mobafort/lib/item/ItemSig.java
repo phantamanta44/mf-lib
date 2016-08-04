@@ -23,6 +23,10 @@ public class ItemSig {
 		this(stack.getType(), stack.getData().getData());
 	}
 
+	public ItemStack construct(int count) {
+		return new ItemStack(material, count, (short)(meta != -1 ? meta : 0));
+	}
+
 	@SuppressWarnings("deprecation")
 	public boolean matches(ItemStack stack) {
 		return stack.getType() == material && (meta == -1 || stack.getData().getData() == meta);
