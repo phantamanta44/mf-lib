@@ -40,4 +40,17 @@ public class StringUtils {
 		return String.format("%.1fs %s", (float)amt / 20F, StringUtils.genResourceBar(max - amt, max, 60));
 	}
 
+	public static int nthOccurence(String str, char c, int n) {
+		if (n < 1)
+			return 0;
+		int seen = 0;
+		for (int i = 0; i < str.length(); i++) {
+			if (str.charAt(i) == c) {
+				if (++i == n)
+					return i;
+			}
+		}
+		return -1;
+	}
+
 }
