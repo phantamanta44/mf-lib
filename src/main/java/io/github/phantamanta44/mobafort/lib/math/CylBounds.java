@@ -17,6 +17,18 @@ public class CylBounds {
 		this.height = height;
 	}
 
+	public Vector getBasePos() {
+		return basePos.clone();
+	}
+
+	public float getRadius() {
+		return radius;
+	}
+
+	public float getHeight() {
+		return height;
+	}
+
 	public boolean intersects(CylBounds bounds) {
 		return MathUtils.withinBounds(
 				basePos.getY(), basePos.getY() + height, bounds.basePos.getY(), bounds.basePos.getY() + bounds.height)
