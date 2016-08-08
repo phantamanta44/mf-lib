@@ -13,18 +13,23 @@ public class RayTrace implements Iterable<Location> {
 	private Vector origin, diff;
 	private int parts;
 
+	public RayTrace(World world, Vector origin, Vector dir, double len, int segs) {
+		this.world = world;
+		this.origin = origin;
+		this.diff = dir.clone().multiply(len / (double)segs);
+		this.parts = segs;
+	}
+
+	public RayTrace(Location origin, Vector dir, double len, int segs) {
+		this(origin.getWorld(), origin.toVector(), dir, len, segs);
+	}
+
 	public RayTrace(Location loc, double len, int segs) {
-		world = loc.getWorld();
-		origin = loc.toVector();
-		diff = loc.getDirection().multiply(len / (double)segs);
-		parts = segs;
+		this(loc, loc.getDirection(), len, segs);
 	}
 
 	public RayTrace(LivingEntity ent, double len, int segs) {
-		world = ent.getWorld();
-		origin = ent.getEyeLocation().toVector();
-		diff = ent.getLocation().getDirection().multiply(len / (double)segs);
-		parts = segs;
+		this(ent.getLocation(), len, segs);
 	}
 
 	@Override
