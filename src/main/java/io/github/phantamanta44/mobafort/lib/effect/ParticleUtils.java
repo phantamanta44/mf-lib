@@ -46,4 +46,18 @@ public class ParticleUtils {
 		dispatchEffect(loc, type, count, 0.5F);
 	}
 
+	public static void colourEffect(Location loc, EnumWrappers.Particle type, float r, float g, float b, float intensity) {
+		WrapperPlayServerWorldParticles pkt = new WrapperPlayServerWorldParticles();
+		pkt.setX((float)loc.getX());
+		pkt.setY((float)loc.getY());
+		pkt.setZ((float)loc.getZ());
+		pkt.setParticleType(type);
+		pkt.setNumberOfParticles(0);
+		pkt.setOffsetX(r);
+		pkt.setOffsetY(g);
+		pkt.setOffsetZ(b);
+		pkt.setParticleData(intensity);
+		loc.getWorld().getPlayers().forEach(pkt::sendPacket);
+	}
+
 }
