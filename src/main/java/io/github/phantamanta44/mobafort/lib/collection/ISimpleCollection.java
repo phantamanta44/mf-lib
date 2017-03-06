@@ -2,10 +2,10 @@ package io.github.phantamanta44.mobafort.lib.collection;
 
 public interface ISimpleCollection<E> {
 
-	int size();
+    int size();
 
-	boolean isEmpty();
+    boolean isEmpty();
 
-	boolean contains(E elem);
+    boolean contains(E elem);
 
 }

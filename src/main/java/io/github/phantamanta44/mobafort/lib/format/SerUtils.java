@@ -5,20 +5,20 @@ import org.bukkit.util.Vector;
 
 public class SerUtils {
 
-	public static JsonObject serVector(Vector vec) {
-		JsonObject ser = new JsonObject();
-		ser.addProperty("x", vec.getX());
-		ser.addProperty("y", vec.getY());
-		ser.addProperty("z", vec.getZ());
-		return ser;
-	}
+    public static JsonObject serVector(Vector vec) {
+        JsonObject ser = new JsonObject();
+        ser.addProperty("x", vec.getX());
+        ser.addProperty("y", vec.getY());
+        ser.addProperty("z", vec.getZ());
+        return ser;
+    }
 
-	public static Vector deserVector(JsonObject ser) {
-		return new Vector(
-			ser.get("x").getAsDouble(),
-			ser.get("y").getAsDouble(),
-			ser.get("z").getAsDouble()
-		);
-	}
+    public static Vector deserVector(JsonObject ser) {
+        return new Vector(
+            ser.get("x").getAsDouble(),
+            ser.get("y").getAsDouble(),
+            ser.get("z").getAsDouble()
+        );
+    }
 
 }

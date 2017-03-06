@@ -5,16 +5,16 @@ import java.util.Set;
 
 public interface ISimpleMap<K, V> extends ISimpleCollection<K> {
 
-	void put(K key, V val);
+    void put(K key, V val);
 
-	V get(K key);
+    V get(K key);
 
-	boolean remove(K key);
+    boolean remove(K key);
 
-	boolean contains(K key);
+    boolean contains(K key);
 
-	void clear();
+    void clear();
 
-	Set<Map.Entry<K, V>> entrySet();
+    Set<Map.Entry<K, V>> entrySet();
 
 }
