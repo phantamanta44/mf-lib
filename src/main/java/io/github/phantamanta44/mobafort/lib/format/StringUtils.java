@@ -42,11 +42,11 @@ public class StringUtils {
 
 	public static int nthOccurence(String str, char c, int n) {
 		if (n < 1)
-			return 0;
+			return -1;
 		int seen = 0;
 		for (int i = 0; i < str.length(); i++) {
 			if (str.charAt(i) == c) {
-				if (++i == n)
+				if (++seen == n)
 					return i;
 			}
 		}

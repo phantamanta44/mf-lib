@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.BiConsumer;
+import java.util.function.BiPredicate;
 import java.util.function.Supplier;
 
 public class OneToManyMap<K, V, C extends Collection<V>> implements ISimpleCollection<K> {
@@ -17,12 +18,7 @@ public class OneToManyMap<K, V, C extends Collection<V>> implements ISimpleColle
 	}
 
 	public void put(K key, V val) {
-		C vals = backing.get(key);
-		if (vals == null) {
-			vals = factory.get();
-			backing.put(key, vals);
-		}
-		vals.add(val);
+		backing.computeIfAbsent(key, k -> factory.get()).add(val);
 	}
 
 	public C get(K key) {
@@ -68,7 +64,10 @@ public class OneToManyMap<K, V, C extends Collection<V>> implements ISimpleColle
 	}
 
 	public void forEach(BiConsumer<K, C> action) {
-		backing.forEach(action);
+		backing.entrySet().removeIf(e -> {
+			action.accept(e.getKey(), e.getValue());
+			return e.getValue().isEmpty();
+		});
 	}
 
 }
